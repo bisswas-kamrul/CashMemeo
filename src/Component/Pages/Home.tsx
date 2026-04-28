@@ -182,7 +182,7 @@ const Home = () => {
               </div>
               <div>
                 <h1 className="font-display text-xl font-bold">
-                  Tailor Cash Memo
+                  Thousand Gallery Cash Memo
                 </h1>
                 <p className="text-xs text-muted-foreground">
                   দর্জির মাপ ও হিসাব
