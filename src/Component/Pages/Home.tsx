@@ -211,12 +211,12 @@ const Home = () => {
             <Card className="overflow-hidden shadow-white">
               {/* Shop header */}
               <div className="bg-red-500 text-primary-foreground px-6 py-5 flex items-center gap-4">
-                <div className="relative shrink-0 group">
+                {/* <div className="relative shrink-0 group">
                   {logo ? (
                     <img
                       src={logo}
                       alt="দোকান লোগো"
-                      className="h-16 w-16 rounded-full object-cover border-2 border-primary-foreground/40 bg-white"
+                      className="h-16 w-20 rounded-full object-cover border-2 border-primary-foreground/40 bg-white"
                     />
                   ) : (
                     <label className="h-16 w-16 rounded-full border-2 border-dashed border-primary-foreground/50 flex flex-col items-center justify-center cursor-pointer hover:bg-primary-foreground/10 transition no-print">
@@ -251,7 +251,7 @@ const Home = () => {
                       </button>
                     </div>
                   )}
-                </div>
+                </div> */}
                 <div className="flex-1 text-center">
                   <input
                     className="w-full bg-transparent text-center font-display text-2xl font-bold outline-none placeholder:text-primary-foreground/60"
@@ -305,65 +305,108 @@ const Home = () => {
               </div>
 
               {/* Measurements */}
-              <div className="p-6 border-b">
-                <h3 className="font-bangla text-base font-semibold mb-3 flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  মাপ (ইঞ্চি)
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                  <MField
-                    label="বডি"
-                    value={memo.measurement.body}
-                    onChange={(v) =>
-                      setMemo({
-                        ...memo,
-                        measurement: { ...memo.measurement, body: v },
-                      })
-                    }
-                  />
-                  <MField
-                    label="হাতা লং"
-                    value={memo.measurement.hata}
-                    onChange={(v) =>
-                      setMemo({
-                        ...memo,
-                        measurement: { ...memo.measurement, hata: v },
-                      })
-                    }
-                  />
-                  <MField
-                    label="লং"
-                    value={memo.measurement.long}
-                    onChange={(v) =>
-                      setMemo({
-                        ...memo,
-                        measurement: { ...memo.measurement, long: v },
-                      })
-                    }
-                  />
-                  <MField
-                    label="পাজামা লং"
-                    value={memo.measurement.pajama}
-                    onChange={(v) =>
-                      setMemo({
-                        ...memo,
-                        measurement: { ...memo.measurement, pajama: v },
-                      })
-                    }
-                  />
-                  <MField
-                    label="অন্যান্য"
-                    value={memo.measurement.extra}
-                    onChange={(v) =>
-                      setMemo({
-                        ...memo,
-                        measurement: { ...memo.measurement, extra: v },
-                      })
-                    }
-                  />
+              <div className="flex justify-between items-center">
+                <div className="relative shrink-0 group">
+                  {logo ? (
+                    <img
+                      src={logo}
+                      alt="দোকান লোগো"
+                      className="h-70 w-60 object-cover border-2 border-primary-foreground/40 bg-white"
+                    />
+                  ) : (
+                    <label className="h-16 w-16 rounded-full border-2 border-dashed border-primary-foreground/50 flex flex-col items-center justify-center cursor-pointer hover:bg-primary-foreground/10 transition no-print">
+                      <Upload className="h-4 w-4" />
+                      <span className="text-[9px] mt-0.5">লোগো</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={onLogoUpload}
+                      />
+                    </label>
+                  )}
+                  {logo && (
+                    <div className="no-print absolute -top-1 -right-1 flex gap-1">
+                      <label
+                        className="h-6 w-6 rounded-full bg-primary-foreground text-primary flex items-center justify-center cursor-pointer shadow"
+                        title="পরিবর্তন">
+                        <Upload className="h-3 w-3" />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={onLogoUpload}
+                        />
+                      </label>
+                      <button
+                        onClick={removeLogo}
+                        className="h-6 w-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow"
+                        title="মুছুন">
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-6 border-b">
+                  <h3 className="font-bangla text-base font-semibold mb-3 flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    মাপ (ইঞ্চি)
+                  </h3>
+                  <div className="grid gap-y-5 ">
+                    <MField
+                      label="বডি"
+                      value={memo.measurement.body}
+                      onChange={(v) =>
+                        setMemo({
+                          ...memo,
+                          measurement: { ...memo.measurement, body: v },
+                        })
+                      }
+                    />
+                    <MField
+                      label="হাতা লং"
+                      value={memo.measurement.hata}
+                      onChange={(v) =>
+                        setMemo({
+                          ...memo,
+                          measurement: { ...memo.measurement, hata: v },
+                        })
+                      }
+                    />
+                    <MField
+                      label="লং"
+                      value={memo.measurement.long}
+                      onChange={(v) =>
+                        setMemo({
+                          ...memo,
+                          measurement: { ...memo.measurement, long: v },
+                        })
+                      }
+                    />
+                    <MField
+                      label="পাজামা লং"
+                      value={memo.measurement.pajama}
+                      onChange={(v) =>
+                        setMemo({
+                          ...memo,
+                          measurement: { ...memo.measurement, pajama: v },
+                        })
+                      }
+                    />
+                    <MField
+                      label="অন্যান্য"
+                      value={memo.measurement.extra}
+                      onChange={(v) =>
+                        setMemo({
+                          ...memo,
+                          measurement: { ...memo.measurement, extra: v },
+                        })
+                      }
+                    />
+                  </div>
                 </div>
               </div>
-
               {/* Items */}
               <div className="p-6 border-b">
                 <div className="flex items-center justify-between mb-3">
